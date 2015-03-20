@@ -20,11 +20,9 @@ import pl.com.bottega.ecommerce.sharedkernel.Money;
 public class BookKeeper {
 
 	private InvoiceFactory invoiceFactory;
-
 	public BookKeeper(InvoiceFactory invoiceFactory) {
 		this.invoiceFactory = invoiceFactory;
 	}
-
 	public Invoice issuance(InvoiceRequest invoiceRequest, TaxPolicy taxPolicy) {
 		Invoice invoice = invoiceFactory.create(invoiceRequest.getClientData());
 
