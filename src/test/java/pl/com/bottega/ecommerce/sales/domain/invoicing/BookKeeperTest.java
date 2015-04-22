@@ -36,7 +36,7 @@ public class BookKeeperTest {
 		when(taxPolicy.calculateTax(ProductType.FOOD, money)).thenReturn(
 				new Tax(money, "opis"));
 		ProductData productData = new ProductDataBuilder().withPrice(1).withProductType(ProductType.FOOD).build();
-		RequestItem requestItem = new RequestItem(productData, 4, money);
+		RequestItem requestItem = new RequestItemBuilder().withProductData(productData).witTotalCost(1).build();
 		invoiceRequest.add(requestItem);
 
 		// when
@@ -55,11 +55,9 @@ public class BookKeeperTest {
 		Money moneyEveryItem = new Money(1);
 		ProductType productTypeEveryItem = ProductType.FOOD;
 		ClientData clientData = new ClientData(id, "Arek");
-		ProductData productData = new ProductData(id, moneyEveryItem,
-				"ksiazka", productTypeEveryItem, new Date());
-		RequestItem requestItem = new RequestItem(productData, 4,
-				moneyEveryItem);
-
+		ProductData productData = new ProductDataBuilder().withPrice(1).withProductType(ProductType.FOOD).build();
+		RequestItem requestItem = new RequestItemBuilder().withProductData(productData).witTotalCost(1).build();
+		
 		InvoiceFactory mockInvoiceFactory = mock(InvoiceFactory.class);
 		bookKeeper = new BookKeeper(mockInvoiceFactory);
 		when(mockInvoiceFactory.create(clientData)).thenReturn(
@@ -113,10 +111,8 @@ public class BookKeeperTest {
 		Money moneyEveryItem = new Money(1);
 		ProductType productTypeEveryItem = ProductType.FOOD;
 		ClientData clientData = new ClientData(id, "Arek");
-		ProductData productData = new ProductData(id, moneyEveryItem,
-				"ksiazka", productTypeEveryItem, new Date());
-		RequestItem requestItem = new RequestItem(productData, 4,
-				moneyEveryItem);
+		ProductData productData = new ProductDataBuilder().withPrice(1).withProductType(ProductType.FOOD).build();
+		RequestItem requestItem = new RequestItemBuilder().withProductData(productData).witTotalCost(1).build();
 
 		InvoiceFactory mockInvoiceFactory = mock(InvoiceFactory.class);
 		bookKeeper = new BookKeeper(mockInvoiceFactory);
